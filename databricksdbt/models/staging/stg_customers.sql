@@ -1,0 +1,19 @@
+with source as (
+
+    select id, first_name, last_name
+    from {{ source('demo', 'raw_customers') }}
+
+),
+
+renamed as (
+
+    select
+        id as customer_id,
+        first_name,
+        last_name
+
+    from source
+
+)
+
+select customer_id, first_name, last_name from renamed
