@@ -1,0 +1,17 @@
+# ~/.dbt/profiles.yml
+
+databricks:
+  outputs:
+    dev:
+      type: databricks
+      method: http
+      catalog: databricksdbt
+      schema: jaffle_shop
+      host: "{{ env_var('DBT_HOST') }}" # without https://
+      http_path: "{{ env_var('DBT_PATH') }}
+      port: 443
+      token: "{{ env_var('DBT_TOKEN') }}"
+      connect_timeout: 10
+      connect_retries: 1
+      threads: 5
+  target: dev
